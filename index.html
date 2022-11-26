@@ -2,70 +2,70 @@
 <link rel="stylesheet" type="text/css" href="main.css">
 <html>
 
-	<head>
+<head>
 
-		<div class="header">
-			<h1> Andy Yang </h1>
-		</div>
+	<div class="header">
+		<h1> Andy Yang </h1>
+	</div>
 
-	</head>
-	<body>
+</head>
 
-		<div class="float-left-area">
-			<p>i am taking up space </p>
-		</div>
+<body>
 
-		<div class="float-right-area">
+	<div class="float-left-area">
+		<p> Please enjoy my middle school HTML style</p>
+	</div>
 
-			<div id="entrieslist">
-				<li> <a href= "images/babyhippo2.jpg" >hippo?</a> </li>
+	<div class="float-right-area">
+
+		<head>
+			<title>Andy Yang</title>
+		</head>
+
+		<body style=background-color:#bec4f7;>
+
+			<div id="float-left-area">
+				<p> Greetings </p>
+				<ul id="ulabout">
+					<li> My name is Andy Yang </li>
+					<li> I study Computer Science and Linguistics in my fourth year at the University of Chicago </li>
+					<li> I am an avid origami enthusiast </li>
+					<li> I speak English, Mandarin, Cantonese, French, and Portuguese to varying degrees of proficiency
+					</li>
+					<li> The ordering of this list is irrelevant </li>
+				</ul>
 			</div>
-	<head >
-		<title>im collapsingl</title>
-	</head>
-	<body style=background-color:#bec4f7;>
 
-		<div id="float-left-area">
-			<p> i am taking up space </p>
-			<li> <a href= "about.html" > about me?</a> </li>
-			<li> <a href= "gallery.html" > gallery page in progress</a> </li>
-		</div>
-
-		<div id="float-right-area">
-			<h3> Should these be called blog posts? </h3>
-			<div id="entrieslist">
-
-
-				<li> nothing else so far </li>
-				<li> <a href= "entries/back_baby.html" >woop </a> </li>
-				<li> <a href= "entries/marchagain2018.html" >camelrider </a> </li>
-				<li> <a href= "entries/againmarch2018.html" >I don't have any new pictures</a> </li>
-				<li> <a href= "entries/march2018.html" >postits are pretty neat </a> </li>
-				<li> <a href= "entries/moneyness.html" >almostt </a> </li>
-				<li> <a href= "entries/21feb2018entry.html" >here's a bird </a> </li>
-				<li> <a href= "entries/valentines2018.html" >valentine 2018 fold</a> </li>
-				<li> <a href= "entries/2.html" >number two </a> </li>
-				<li> <a href= "entries/1.html" >number one</a> </li>
-				<li> <a href= "images/babyhippo2.jpg" >hippo?</a> </li>
+			<div id="float-right-area">
+				<h3> Here I will list relevant links </h3>
+				<div id="entrieslist">
+					<li> nothing else so far </li>
+					<li> <a href="folding/index.html"> Old origami site :) </a> </li>
+				</div>
 
 			</div>
 
-		</div>
+			<div class="separation">
 
-		<div class="separation">
+			</div>
+			<div class="footer">
+				<a href="https://oysterclam.github.io/">find your way back home right now!!</a>
 
-		</div>
-		<div class="footer">
-				<a href= "https://oysterclam.github.io/" >find your way back home right now!!</a>
-
-		</div>
+			</div>
 
 
 
-<script>
-var h = document.getElementById('float-right-area').clientHeight;
-document.getElementById("float-left-area").style.height = h +"px";
-</script>
+			<script>
+				var h = document.getElementById('float-right-area').clientHeight;
+				document.getElementById("float-left-area").style.height = h + "px";
 
-	</body>
+				var ulabout = document.getElementById('ulabout');
+				for (var i = ulabout.children.length; i >= 0; i--) {
+					ulabout.appendChild(ulabout.children[Math.random() * i | 0]);
+				}
+
+			</script>
+
+		</body>
+
 </html>
