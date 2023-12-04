@@ -5,36 +5,35 @@
 <head>
 	<div class="header">
 		<h1> Andy Yang </h1>
+		<p> 杨加锋 </p>
+		<img style="float:center" src="images/IMG_5284.jpeg" alt="andy" height="200">
 	</div>
 </head>
 
 <body>
-	<div class="float-left-area">
-		<p> Please enjoy my high school HTML style</p>
-	</div>
-	<div class="float-right-area">
+	<div>
 
 		<head>
 			<title>Andy Yang</title>
 		</head>
 
 		<body style=background-color:#bec4f7;>
-			<div id="float-left-area">
-				<p> Greetings </p>
+			<div id="biobox">
 				<ul id="ulabout">
-					<li> My name is Andy Yang </li>
-					<li> I study Computer Science and Linguistics in my fourth year at the University of Chicago </li>
-					<li> I am an avid origami enthusiast </li>
-					<li> I speak English, Mandarin, Cantonese, French, and Portuguese to varying degrees of proficiency
-					</li>
-					<li> The ordering of this list is irrelevant </li>
+					<!-- <li> My name is Andy Yang </li> -->
+					<li> First year PhD student at the University of Notre Dame, advised by <a
+							href="https://www3.nd.edu/~dchiang/"> Dr. David Chiang</a> in the <a href="nlp.ed.edu"> NLP
+							lab.</a></li>
+					<!-- <li> I am an avid origami enthusiast </li> -->
+					<!-- <li> I speak English, Mandarin, Cantonese, French, and Portuguese to varying degrees of proficiency
+					</li> -->
+					<!-- <li> The ordering of this list is irrelevant </li> -->
 				</ul>
 			</div>
 			<div id="float-right-area">
 				<h3> Here I will list relevant links </h3>
 				<div id="entrieslist">
 					<ul>
-						<li> <a href="folding/index.html"> Old origami site :) </a> </li>
 						<li> <a href="cellular-automata/cells.html"> Cellular Automata Editor </a> </li>
 						<li> <a href="lezard/liz.html"> a friend </a></li>
 					</ul>
@@ -44,16 +43,18 @@
 			<div class="footer">
 				<a href="https://oysterclam.github.io/">find your way back home right now!!</a>
 			</div>
-			<script>
-				var h = document.getElementById('float-right-area').clientHeight;
-				document.getElementById("float-left-area").style.height = h + "px";
+			<div class="footer_image">
+				<img src="images/cp.svg" width="100%">
+				<script>
+					var h = document.getElementById('float-right-area').clientHeight;
+					document.getElementById("float-left-area").style.height = h + "px";
 
-				var ulabout = document.getElementById('ulabout');
-				for (var i = ulabout.children.length; i >= 0; i--) {
-					ulabout.appendChild(ulabout.children[Math.random() * i | 0]);
-				}
+					var ulabout = document.getElementById('ulabout');
+					for (var i = ulabout.children.length; i >= 0; i--) {
+						ulabout.appendChild(ulabout.children[Math.random() * i | 0]);
+					}
 
-			</script>
+				</script>
 		</body>
 
 </html>
