@@ -108,7 +108,6 @@ li {
     position: absolute;
     background-color: orange;
     color: none;
-    /* transition: 1s top, 1s right; */
     top: 0;
     right: calc(100% - var(--div-width));
     width: var(--div-width);

@@ -12,13 +12,14 @@ setInterval(() => {
     for (var j = 0; j < fishes.length; j++) {
         stepsize = 100;
         fish = fishes[j];
+        fish.style.transition = "1s top, 1s right";
         // print(fish.style.top);
         y = parseInt(fish.style.top || 0, 10);
         x = parseInt(fish.style.right || 0, 10);
 
         // move fish up to step in each direction randomly
-        let randY = Math.floor((Math.random() * stepsize) - (stepsize / 2));
-        let randX = Math.floor((Math.random() * stepsize) - (stepsize / 2));
+        let randY = Math.floor((Math.random() * stepsize)) - Math.floor(stepsize / 2);
+        let randX = Math.floor((Math.random() * stepsize)) - Math.floor(stepsize / 2);
         console.log(y, randY, x, randX);
 
         // do not go outside of tank
@@ -39,7 +40,7 @@ function plantFishes() {
     }
     for (var j = 0; j < fishes.length; j++) {
         fish = fishes[j];
-
+        fish.style.transition = "";
         // set fish position
         let randY = Math.floor((Math.random() * (tankbottom - tanktop)));
         let randX = Math.floor((Math.random() * width));
@@ -49,8 +50,6 @@ function plantFishes() {
 
         fish.style.top = y + "px";
         fish.style.right = x + "px";
-        fish.style.transition = "1s top, 1s right";
     }
-    // li.style.transition = "1s top, 1s right";
 
 }
