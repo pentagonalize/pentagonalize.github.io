@@ -8,14 +8,14 @@ tankbottom = tank.getBoundingClientRect().bottom;
 setInterval(() => {
     fishes = document.getElementsByClassName("swimmingfish");
     for (var j = 0; j < fishes.length; j++) {
-        stepsize = 120;
+        stepsize = 40;
 
         // random chance to make a big step
-        if (Math.random() > 0.9) {
-            stepsize = 500;
+        if (Math.random() > 0.95) {
+            stepsize = 800;
         }
         fish = fishes[j];
-        fish.style.transition = "1s top, 1s right";
+        fish.style.transition = ".5s top, .5s right";
         // print(fish.style.top);
         y = parseInt(fish.style.top || 0, 10);
         x = parseInt(fish.style.right || 0, 10);
@@ -33,7 +33,7 @@ setInterval(() => {
         fish.style.top = y + "px";
         fish.style.right = x + "px";
     }
-}, 200); // every 1/2 second
+}, 100); // every 1/2 second
 
 function plantFishes() {
     // randomly set positions of fish
