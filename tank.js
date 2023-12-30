@@ -52,7 +52,7 @@ function plantFishes() {
         return;
     }
     entrieslist = document.getElementById("entrieslist");
-    entrieslist.style.height = "500px";
+    entrieslist.style.height = "300px";
     planted = true;
     fishes = document.getElementsByClassName("fish");
 

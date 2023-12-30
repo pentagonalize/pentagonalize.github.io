@@ -65,3 +65,27 @@ body {
     color: none;
     top: 0;
 }
+
+a:link {
+    color: #624cb1;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #624cb1;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(189, 88, 20);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
