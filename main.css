@@ -15,8 +15,9 @@ body {
 #biobox {
     float: top;
     background-color: white;
-    margin: 0;
-    width: 100%;
+    margin: auto;
+    float: center;
+    width: 500px;
     height: fit-content;
     background-color: #E2E1E1;
     border: #999999 3px solid;
@@ -24,13 +25,13 @@ body {
 }
 
 #entrieslist {
-    float: top;
     height: fit-content;
     border: #999999 3px solid;
-    width: 100%;
+    margin: auto;
+    float: center;
+    width: 500px;
     background-color: #E2E1E1;
     text-align: left;
-    margin: 0;
     font-size: large;
 }
 

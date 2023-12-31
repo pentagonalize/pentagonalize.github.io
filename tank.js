@@ -4,6 +4,8 @@ var planted = false;
 tank = document.getElementById("entrieslist");
 tanktop = tank.getBoundingClientRect().top;
 tankbottom = tank.getBoundingClientRect().bottom;
+tankleft = tank.getBoundingClientRect().left;
+tankright = tank.getBoundingClientRect().right;
 
 setInterval(() => {
     fishes = document.getElementsByClassName("swimmingfish");
@@ -29,7 +31,7 @@ setInterval(() => {
         // that is, truncate to tank boundaries tanktop and tankbottom
         // console.log(tanktop, tankbottom);
         y = Math.min(Math.max(y + randY, tanktop + 80), tankbottom);
-        x = Math.min(Math.max(x + randX, 0), width);
+        x = Math.min(Math.max(x + randX, tankleft + 80), tankright + 80);
         fish.style.top = y + "px";
         fish.style.right = x + "px";
     }
@@ -40,6 +42,7 @@ function plantFishes() {
     if (planted) {
         entrieslist = document.getElementById("entrieslist");
         entrieslist.style.height = "fit-content";
+        entrieslist.style.width = "500px";
         planted = false;
 
         fishes = document.getElementsByClassName("swimmingfish");
@@ -53,6 +56,7 @@ function plantFishes() {
     }
     entrieslist = document.getElementById("entrieslist");
     entrieslist.style.height = "300px";
+    entrieslist.style.width = "100%";
     planted = true;
     fishes = document.getElementsByClassName("fish");
 
@@ -61,7 +65,10 @@ function plantFishes() {
     tankheight = tank.getBoundingClientRect().height;
     tankwidth = tank.getBoundingClientRect().width;
 
+
+    console.log(tankheight, tankwidth, "sack");
     console.log(tanktop, tankbottom);
+    console.log(tankleft, tankright);
     for (var j = 0; j < fishes.length; j++) {
         // console.log("planting fish");
 
@@ -72,9 +79,9 @@ function plantFishes() {
         let randY = Math.floor((Math.random() * tankheight));
         let randX = Math.floor((Math.random() * tankwidth));
 
-        y = tanktop + 90 + randY;
-        x = randX;
-        console.log(y);
+        y = tanktop + randY;
+        x = tankleft + randX;
+        console.log(randX, x, "ball");
 
         fish.style.top = y + "px";
         fish.style.right = x + "px";
