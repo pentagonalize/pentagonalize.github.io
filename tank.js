@@ -2,10 +2,10 @@ const height = document.documentElement.clientHeight;
 const width = document.documentElement.clientWidth;
 var planted = false;
 tank = document.getElementById("entrieslist");
-tanktop = tank.getBoundingClientRect().top;
-tankbottom = tank.getBoundingClientRect().bottom;
-tankleft = tank.getBoundingClientRect().left;
-tankright = tank.getBoundingClientRect().right;
+tanktop = tank.getBoundingClientRect().top + window.scrollY;
+tankbottom = tank.getBoundingClientRect().bottom + window.scrollY;
+tankleft = tank.getBoundingClientRect().left + window.scrollX;
+tankright = tank.getBoundingClientRect().right + window.scrollX;
 
 setInterval(() => {
     fishes = document.getElementsByClassName("swimmingfish");
@@ -29,9 +29,8 @@ setInterval(() => {
 
         // do not go outside of tank
         // that is, truncate to tank boundaries tanktop and tankbottom
-        // console.log(tanktop, tankbottom);
-        y = Math.min(Math.max(y + randY, tanktop + 80), tankbottom);
-        x = Math.min(Math.max(x + randX, tankleft + 80), tankright + 80);
+        y = Math.min(Math.max(y + randY, tanktop + 20), tankbottom - 20);
+        x = Math.min(Math.max(x + randX, tankleft + 20), tankright - 20);
         fish.style.top = y + "px";
         fish.style.right = x + "px";
     }
@@ -62,11 +61,19 @@ function plantFishes() {
 
 
     tank = document.getElementById("entrieslist");
+    // tanktop = tank.getBoundingClientRect().top;
+    // tankbottom = tank.getBoundingClientRect().bottom;
+    // tankleft = tank.getBoundingClientRect().left;
+    // tankright = tank.getBoundingClientRect().right;
+
+    console.log("top: ", tanktop, "bottom: ", tankbottom);
+    console.log("left: ", tankleft, "right: ", tankright);
+
     tankheight = tank.getBoundingClientRect().height;
     tankwidth = tank.getBoundingClientRect().width;
 
 
-    console.log(tankheight, tankwidth, "sack");
+    console.log("width: ", tankwidth, "height: ", tankheight);
     console.log(tanktop, tankbottom);
     console.log(tankleft, tankright);
     for (var j = 0; j < fishes.length; j++) {
@@ -79,7 +86,7 @@ function plantFishes() {
         let randY = Math.floor((Math.random() * tankheight));
         let randX = Math.floor((Math.random() * tankwidth));
 
-        y = tanktop + randY;
+        y = tanktop + 50 + randY;
         x = tankleft + randX;
         console.log(randX, x, "ball");
 
