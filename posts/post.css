@@ -1,26 +1,16 @@
 body {
     margin: 0;
     padding: 0;
+    float: center;
 }
 
 .header {
     font-family: Georgia, Times, "Times New Roman", serif;
+    background-color: #E2E1E1;
     text-align: center;
     width: 100%;
     margin: 0;
-    position: fixe
-        /* border: #999999 3px solid; */
-}
-
-#biobox {
-    float: top;
-    background-color: white;
-    margin: 0;
-    width: 100%;
-    height: fit-content;
-    background-color: #E2E1E1;
     border: #999999 3px solid;
-    font-size: large;
 }
 
 #entrieslist {
@@ -89,4 +79,24 @@ a:active {
     color: yellow;
     background-color: transparent;
     text-decoration: underline;
+}
+
+/* class def */
+
+.blog_body {
+    border: #999999 3px solid;
+    background-color: #E2E1E1;
+    position: absolute;
+    text-align: center;
+    float: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.blog_text {
+    margin: auto;
+    float: center;
+    text-align: left;
+    width: 500px;
 }
