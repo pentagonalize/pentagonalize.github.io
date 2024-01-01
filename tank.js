@@ -7,6 +7,18 @@ tankbottom = tank.getBoundingClientRect().bottom + window.scrollY;
 tankleft = tank.getBoundingClientRect().left + window.scrollX;
 tankright = tank.getBoundingClientRect().right + window.scrollX;
 
+mouseX = 0;
+mouseY = 0;
+
+function handleMouseMove(event) {
+    var mouseX = event.clientX;
+    var mouseY = event.clientY;
+
+    console.log('Mouse X:', mouseX, 'Mouse Y:', mouseY);
+}
+
+document.addEventListener('mousemove', handleMouseMove);
+
 setInterval(() => {
     fishes = document.getElementsByClassName("swimmingfish");
     for (var j = 0; j < fishes.length; j++) {

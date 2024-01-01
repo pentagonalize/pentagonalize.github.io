@@ -1,15 +1,14 @@
 body {
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    float: center;
 }
 
 .header {
     font-family: Georgia, Times, "Times New Roman", serif;
     text-align: center;
+    float: center;
     width: 100%;
-    margin: 0;
-    position: fixe
-        /* border: #999999 3px solid; */
+    margin: auto;
 }
 
 #biobox {
