@@ -21,6 +21,7 @@ body {
     background-color: #E2E1E1;
     border: #999999 3px solid;
     font-size: large;
+    padding: 5px;
 }
 
 #entrieslist {
@@ -32,6 +33,7 @@ body {
     background-color: #E2E1E1;
     text-align: left;
     font-size: large;
+    padding: 5px;
 }
 
 .separation {
