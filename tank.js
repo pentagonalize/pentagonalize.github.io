@@ -6,14 +6,6 @@ tank = document.getElementById("entrieslist");
 mouseX = 0;
 mouseY = 0;
 
-function handleMouseMove(event) {
-    var mouseX = event.clientX;
-    var mouseY = event.clientY;
-
-    console.log('Mouse X:', mouseX, 'Mouse Y:', mouseY);
-}
-
-document.addEventListener('mousemove', handleMouseMove);
 
 setInterval(() => {
     fishes = document.getElementsByClassName("swimmingfish");
@@ -92,7 +84,6 @@ function plantFishes() {
 
         y = tanktop + 50 + randY;
         x = tankleft + randX;
-        console.log(randX, x, "ball");
 
         fish.style.top = y + "px";
         fish.style.right = x + "px";
@@ -107,12 +98,12 @@ function scareFish(event) {
     tankright = tank.getBoundingClientRect().right;
     mouseX = event.clientX;
     mouseY = event.clientY;
-    scale = 5000;
+    scale = 8000;
     // Check if mouse is in tank
-    console.log(tankleft, tankright, tanktop, tankbottom)
     if (mouseX >= tankleft && mouseX <= tankright && mouseY >= tanktop && mouseY <= tankbottom) {
         console.log("mouse in tank");
         fishes = document.getElementsByClassName("swimmingfish");
+        ball = document.getElementById("ball");
         // Push fish away from mouse in a random direction
         // there's some horrendous stuff here because I realize that some coordinates are from the left
         // and some are from the right
@@ -126,22 +117,23 @@ function scareFish(event) {
             x = parseInt(fish.style.right || 0, 10);
 
             // get distance
-            dist = Math.sqrt(Math.pow(width - mouseX - x, 2) + Math.pow(y - mouseY, 2));
+            dist = Math.sqrt(Math.pow(width - mouseX - x - fish.offsetWidth / 2, 2) + Math.pow(y - mouseY, 2));
 
             // get unit vector
-            unitx = (width - mouseX - x) / dist;
+            unitx = (width - mouseX - x - fish.offsetWidth / 2) / dist;
             unity = (y - mouseY) / dist;
 
             // get new position
             tempx = x;
             tempy = y;
             x = x - unitx * scale / dist;
-            y = y + unity * 4 * scale / dist + window.scrollY;
+            y = y + unity * 2 * scale / dist + window.scrollY;
 
             // do not go outside of tank
             // that is, truncate to tank boundaries tanktop and tankbottom
             y = Math.min(Math.max(y, tanktop + window.scrollY + 20), tankbottom + window.scrollY - 20);
-            x = Math.min(Math.max(x, 0), tankright - 20);
+            x = Math.min(Math.max(x, 10), width - 10);
+            console.log(x, y);
             fish.style.top = y + "px";
             fish.style.right = x + "px";
 
