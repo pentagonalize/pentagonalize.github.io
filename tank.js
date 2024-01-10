@@ -33,7 +33,7 @@ setInterval(() => {
         // // do not go outside of tank
         // // that is, truncate to tank boundaries tanktop and tankbottom
         y = Math.min(Math.max(y + randY, tanktop + 20), tankbottom - 20);
-        x = Math.min(Math.max(x + randX, tankleft + 20), tankright - 20);
+        x = Math.min(Math.max(x + randX, 10), width - 10);
         fish.style.top = y + "px";
         fish.style.right = x + "px";
     }
