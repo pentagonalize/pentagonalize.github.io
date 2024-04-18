@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="../blog.css">
+<link rel="icon" href="images/dodecadodecahedron.png">
+<html>
+
+<head>
+    <title>BRASP</title>
+</head>
+
+
+<body>
+    <div class="header">
+        <h1> Masked Hard-Attention Transformers
+        </h1>
+    </div>
+    <div style="text-align: center;">
+        <img src="BRASP_diagrams.svg" width="500">
+        <div style="margin:auto; width:500px;">
+            <i>
+                A schematic of a Masked Hard-Attention Transformer alongside the program trace of a B-RASP program
+                recognizing Dyck-1 of depth 2
+            </i>
+        </div>
+    </div>
+    <hr>
+    <div class="blog_body">
+        <div class="blog_text">
+            <h2>The Paper</h2>
+            <a href="https://arxiv.org/abs/2310.13897"> Masked Hard-Attention Transformers</a>
+
+            <h2> The Slides</h2>
+            <a href="BRASP_talk.pdf"> Talk slides</a> - I don't know when the youtube video will be up
+
+            <h2> What's the Deal?</h2>
+
+            <p>
+                Hard-attention transformers are a model of transformers used for theoretical analysis,
+                where attention values get concentrated on a single position (<i>unique hard-attention</i>) or spread
+                uniformly over a small subset of positions (<i>average hard-attention</i>). In <a
+                    href="https://lena-voita.github.io/posts/acl19_heads.html"> prior research</a>, Elena Voita (et al)
+                have observed that in trained transformers, attention actually does get concentrated on just a
+                few
+                positions, which suggests
+                this theoretical model may provide insight into real-life transformer models.
+            </p>
+            <p>
+                More specifically, this work analyzes
+                unique
+                hard-attention transformers with <a
+                    href="https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)#Masked_attention">
+                    <i>future masking</i></a>. The heart of the analysis is a little programming language Dana came up
+                with called
+                Boolean-RASP, inspired by Gail Weiss's<a href="https://srush.github.io/raspy/">
+                    RASP</a>. This language facilitates our proof of the
+                equivalence between the expressivity of masked hard-attention transformers and that of
+                <a href="https://arxiv.org/abs/2301.10519">first-order logic</a>, <a
+                    href="https://arxiv.org/abs/1401.2580">linear temporal logic</a>, as well as
+                <a href="https://richmodels.epfl.ch/_media/star-free-pres.pdf">counter-free automata</a> (these link to
+                some nice definitions).
+            </p>
+            <p>
+                <b>*LIMITATIONS MAY APPLY*</b>
+                <br>
+                In reality, transformers exhibit the capacity to <a href="https://arxiv.org/abs/2010.09697"> attend
+                    uniformly </a> across all positions, a behavior not expressible by hard-attention models. Thus these
+                results give a strict lower bound with a sizeable gap from the actual expressivity of transformers.
+            </p>
+            <p>
+                Despite these limitations, I think this work still provides valuable insight for future research as a
+                "base-case" for studying the formal expressivity of transformers.
+                As one of the only known exact correspondences between a transformer variant and a logic, it places this
+                line of studying transformer expressivity
+                on firm foundations. Furthermore, the proof techniques used can provide inspiration for future work - in
+                particular, Boolean-RASP and its possible extensions hold a lot of potential for simplifying future
+                analysis
+                of more complicated transformer models. I hope to see what comes next in this line of research!
+
+            </p>
+
+        </div>
+    </div>
+
+    <div class="separation"></div>
+    <div class="footer">
+        <a href="../../andy.html">Home</a>
+    </div>
+</body>

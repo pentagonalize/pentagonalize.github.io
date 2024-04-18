@@ -62,7 +62,6 @@ function plantFishes() {
     planted = true;
     fishes = document.getElementsByClassName("fish");
 
-
     tank = document.getElementById("entrieslist");
     tanktop = tank.getBoundingClientRect().top;
     tankbottom = tank.getBoundingClientRect().bottom;

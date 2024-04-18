@@ -1,0 +1,139 @@
+:root {
+    --tree-color: rgb(83, 61, 31);
+    --leaf-color: rgb(53, 159, 65);
+}
+
+body {
+    margin: auto;
+    float: top;
+    display: block;
+    background-color: #f9efd6;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--leaf-color);
+    height: 390px;
+}
+
+.trunk {
+    width: 20%;
+    height: 4000px;
+    margin: auto;
+    margin-top: 500px;
+    text-align: center;
+    background-color: var(--tree-color);
+}
+
+.leftbranch {
+    width: 100%;
+    color: var(--leaf-color);
+    float: right;
+    justify-content: left;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16pt;
+    margin-top: 20px;
+    padding-right: 180%;
+    padding-left: 10px;
+    overflow: auto;
+    overflow-wrap: break-word;
+    background: linear-gradient(to bottom, var(--tree-color) 0%, var(--tree-color) 30px, transparent 30px, transparent 100%);
+}
+
+.leftbranch>.leftsubbranch:first-child {
+    margin-top: 30px;
+    /* To force margin for empty text in parent branch  */
+}
+
+.leftsubbranch {
+    width: 80%;
+    clear: both;
+    float: right;
+    padding-left: 10px;
+    padding-right: 30%;
+    margin-top: 10px;
+    margin-right: -80%;
+    text-align: left;
+    font-size: 12pt;
+    overflow: auto;
+    overflow-wrap: break-word;
+    color: var(--leaf-color);
+    background: linear-gradient(to bottom, var(--tree-color) 0%, var(--tree-color) 20px, transparent 20px, transparent 100%);
+}
+
+.rightbranch {
+    width: 100%;
+    color: var(--leaf-color);
+    float: left;
+    justify-content: right;
+    text-align: right;
+    font-weight: bold;
+    font-size: 16pt;
+    margin-top: 20px;
+    padding-left: 180%;
+    padding-right: 10px;
+    overflow: auto;
+    overflow-wrap: break-word;
+    background: linear-gradient(to bottom, var(--tree-color) 0%, var(--tree-color) 25px, transparent 25px, transparent 100%);
+}
+
+.rightbranch>.rightsubbranch:first-child {
+    margin-top: 20px;
+    /* To force margin for empty text in parent branch  */
+}
+
+.rightsubbranch {
+    width: 80%;
+    clear: both;
+    float: left;
+    padding-right: 10px;
+    padding-left: 30%;
+    margin-top: 10px;
+    margin-left: -80%;
+    text-align: right;
+    font-size: 12pt;
+    overflow: auto;
+    overflow-wrap: break-word;
+    color: var(--leaf-color);
+    background: linear-gradient(to bottom, var(--tree-color) 0%, var(--tree-color) 20px, transparent 20px, transparent 100%);
+}
+
+.footer {
+    float: left;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    width: calc(100% - 6px);
+    background-color: #5a3b20;
+    text-align: center;
+    margin: 0;
+    border: #126b23 3px solid;
+}
+
+a:link {
+    color: #bad88a;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #bad88a;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(205, 63, 160);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
