@@ -45,7 +45,7 @@ body {
 }
 
 .leftbranch>.leftsubbranch:first-child {
-    margin-top: 30px;
+    margin-top: 10px;
     /* To force margin for empty text in parent branch  */
 }
 
@@ -82,7 +82,7 @@ body {
 }
 
 .rightbranch>.rightsubbranch:first-child {
-    margin-top: 20px;
+    margin-top: 10px;
     /* To force margin for empty text in parent branch  */
 }
 
