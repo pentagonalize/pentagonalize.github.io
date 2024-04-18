@@ -41,7 +41,7 @@ body {
     padding-left: 10px;
     overflow: auto;
     overflow-wrap: break-word;
-    background: linear-gradient(to bottom, var(--tree-color) 0%, var(--tree-color) 30px, transparent 30px, transparent 100%);
+    background: linear-gradient(to bottom, var(--tree-color) 0%, var(--tree-color) 25px, transparent 25px, transparent 100%);
 }
 
 .leftbranch>.leftsubbranch:first-child {
