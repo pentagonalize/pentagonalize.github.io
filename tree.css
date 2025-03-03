@@ -1,13 +1,15 @@
 :root {
-    --tree-color: rgb(83, 61, 31);
-    --leaf-color: rgb(53, 159, 65);
+    --tree-color: rgb(230, 97, 0);
+    --leaf-color: #117733;
+    --background-color: #DDCC77;
+    --link-color: #332288;
+
 }
 
 body {
     margin: auto;
     float: top;
-    display: block;
-    background-color: #f9efd6;
+    background-color: var(--background-color);
     height: 100%;
 }
 
@@ -16,14 +18,15 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: var(--leaf-color);
-    height: 350px;
+    height: 200px;
+    color: var(--tree-color);
 }
 
 .trunk {
     width: 15%;
-    height: 4000px;
+    height: 2000px;
     margin: auto;
-    margin-top: 250px;
+    margin-top: 200px;
     text-align: center;
     background-color: var(--tree-color);
 }
@@ -108,32 +111,32 @@ body {
     position: fixed;
     left: 0;
     width: calc(100% - 6px);
-    background-color: #5a3b20;
+    background-color: var(--leaf-color);
     text-align: center;
     margin: 0;
-    border: #126b23 3px solid;
+    border: var(--leaf-color) 3px solid;
 }
 
 a:link {
-    color: #bad88a;
+    color: #332288;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #bad88a;
+    color: #332288;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
-    color: rgb(205, 63, 160);
+    color: #AA4499;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: yellow;
+    color: #882255;
     background-color: transparent;
     text-decoration: underline;
 }

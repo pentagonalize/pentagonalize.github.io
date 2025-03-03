@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="andy.css">
+<link id="cssLink" rel="stylesheet" type="text/css" href="basic.css">
 <link rel="script" type="text/javascript" href="andy.js">
 <link rel="icon" href="images/penta.png">
 
@@ -8,20 +8,37 @@
 <html>
 
 <head class="header">
-    <title>Andy J Yang</title>
+    <title>Andy J Yang
+    </title>
+
+
 </head>
 
+<script>
+    function toggleCSS() {
+        var currentCSS = document.getElementById("cssLink");
+        if (currentCSS.getAttribute("href") === "tree.css") {
+            currentCSS.setAttribute("href", "basic.css");
+            document.getElementById("info").style.display = "none";
+        } else {
+            currentCSS.setAttribute("href", "tree.css");
+            document.getElementById("info").style.display = "block";
+        }
+    }
+</script>
+
 <body>
-    <div style="height:100px; background-color: var(--leaf-color);">
+    <div style="height:0px; background-color: var(--leaf-color);">
         <div class="header">
-            <h1 style="margin-top: 150px; margin-bottom: 0;"> Andy J Yang </h1>
+            <h1 style="margin-top: 80px; margin-bottom: 0;"> Andy J Yang </h1>
             <h3 style="margin-top: 0;"> 杨加锋 </h3>
             <!-- <img style="float:center" src="images/monky.jpg" alt="andy" height="200"> -->
+
         </div>
     </div>
 
     <div class="trunk">
-        <div class="leftbranch">
+        <div id="info" class="leftbranch" style="display:none">
             There are links on the tree branches below. Please click on them.
         </div>
         <div class="rightbranch">
@@ -39,19 +56,23 @@
             <div class="leftsubbranch">
             </div>
             <div class="leftsubbranch">
-                <a href="blog_posts/BRASP/BRASP.html">B-RASP</a>
+                <!-- <a href="blog_posts/BRASP/BRASP.html">B-RASP</a> -->
+                <a href="https://arxiv.org/abs/2310.13897">B-RASP</a>
             </div>
             <div class="leftsubbranch">
                 <a href="https://arxiv.org/abs/2404.04393">C-RASP</a>
             </div>
             <div class="leftsubbranch">
-                <a href="https://arxiv.org/abs/2410.02140"> More C-RASP</a>
+                <a href="https://arxiv.org/abs/2410.02140"> Length Generalization (with C-RASP) </a>
+            </div>
+            <div class="leftsubbranch">
+                <a href="https://arxiv.org/abs/2412.09925"> Hard Attention Transformers</a>
             </div>
             <div class="leftsubbranch">
                 <a href="https://github.com/pentagonalize/Transformer-Cookbook">Transformer Cookbook</a>
             </div>
         </div>
-        <!-- <div class="leftbranch">
+        <div class="leftbranch">
             Other Things
             <div class="leftsubbranch">
             </div>
@@ -74,7 +95,7 @@
                     Swahili Morphology Notes
                 </a>
             </div>
-        </div> -->
+        </div>
 
         <div class="rightbranch">
             Talk Slides
@@ -102,7 +123,7 @@
             </div> -->
         </div>
 
-        <!-- <div class="leftbranch">
+        <div class="leftbranch">
             Origami
             <div class="leftsubbranch">
             </div>
@@ -126,7 +147,7 @@
                     JMM 2024 Origami
                 </a>
             </div>
-        </div> -->
+        </div>
 
         <!-- <div class="rightbranch">
             "Blog Posts"
@@ -165,6 +186,9 @@
 
     <div class="footer">
         <a href="">Home</a>
+        <br>
+        <button onclick="toggleCSS()">Toggle CSS</button>
+
     </div>
     <script>
 
