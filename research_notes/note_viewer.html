@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BRASP</title>
+    <link rel="stylesheet" type="text/css" href="notes.css">
+    <link rel="icon" href="images/dodecadodecahedron.png">
+    <style>
+        #markdown-box {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #f9f9f9;
+            font-family: sans-serif;
+        }
+
+        #note-links {
+            max-width: 600px;
+            margin: 1rem auto;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        #note-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+        }
+
+        #note-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="markdown-box">Loading...</div>
+
+    <div id="note-links">
+        <ul style="list-style-type: none; padding: 0; text-align: left; margin: 0 auto; display: inline-block;">
+            <li><a href="#" data-note="notes/example.md">Default Note</a></li>
+            <li><a href="#" data-note="notes/another-note.md">Another Note</a></li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Global variable to track the current note
+        let note = 'notes/example.md';
+
+        // Function to load the markdown content
+        function loadMarkdown() {
+            fetch(note)
+                .then(res => res.text())
+                .then(md => {
+                    document.getElementById('markdown-box').innerHTML = marked.parse(md);
+                })
+                .catch(err => {
+                    document.getElementById('markdown-box').innerHTML = '<p>Error loading note.</p>';
+                    console.error(err);
+                });
+        }
+
+        // Load the initial note
+        loadMarkdown();
+
+        // Add event listeners to the links
+        document.querySelectorAll('#note-links a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                note = event.target.getAttribute('data-note'); // Update the global note variable
+                loadMarkdown(); // Reload the markdown content
+            });
+        });
+    </script>
+</body>
+
+</html>
