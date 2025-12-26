@@ -91,3 +91,17 @@ a:active {
     background-color: transparent;
     text-decoration: underline;
 }
+
+.fish {
+    position: none;
+    color: none;
+    top: 0;
+}
+
+.swimmingfish {
+    position: absolute;
+    color: none;
+    /* top: 0; */
+    font-size: 10px;
+    line-height: 1;
+}

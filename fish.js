@@ -2,7 +2,6 @@ const height = document.documentElement.clientHeight;
 const width = document.documentElement.clientWidth;
 var planted = false;
 tank = document.getElementById("entrieslist");
-
 mouseX = 0;
 mouseY = 0;
 
@@ -14,15 +13,14 @@ setInterval(() => {
     tankleft = tank.getBoundingClientRect().left + window.scrollX;
     tankright = tank.getBoundingClientRect().right + window.scrollX;
     for (var j = 0; j < fishes.length; j++) {
-        stepsize = 20;
+        stepsize = 40;
 
         // random chance to make a big step
-        if (Math.random() > 0.97) {
-            stepsize = 100;
+        if (Math.random() > 0.99) {
+            stepsize = 400;
         }
         fish = fishes[j];
         fish.style.transition = ".5s top, .5s right";
-        // print(fish.style.top);
         y = parseInt(fish.style.top || 0, 10);
         x = parseInt(fish.style.right || 0, 10);
 
@@ -37,28 +35,34 @@ setInterval(() => {
         fish.style.top = y + "px";
         fish.style.right = x + "px";
     }
-}, 100);
+}, 200);
 
 function plantFishes() {
     // randomly set positions of fish
     if (planted) {
         entrieslist = document.getElementById("entrieslist");
-        entrieslist.style.height = "fit-content";
-        entrieslist.style.width = "500px";
         planted = false;
 
         fishes = document.getElementsByClassName("swimmingfish");
         for (var j = 0; j < fishes.length; j++) {
-
             fish = fishes[j];
-            fish.className = 'fish';
+            if (fish.classList) {
+                fish.classList.remove('swimmingfish');
+                fish.classList.add('fish');
+            } else {
+                const classes = (fish.className || '').split(/\s+/).filter(Boolean);
+                const newClasses = classes.filter(c => c !== 'swimmingfish');
+                newClasses.push('fish');
+                fish.className = newClasses.join(' ');
+            }
             j -= 1;
         }
+
         return;
+
     }
+
     entrieslist = document.getElementById("entrieslist");
-    entrieslist.style.height = "300px";
-    entrieslist.style.width = "100%";
     planted = true;
     fishes = document.getElementsByClassName("fish");
 
@@ -72,10 +76,17 @@ function plantFishes() {
 
 
     for (var j = 0; j < fishes.length; j++) {
-        // console.log("planting fish");
-
         fish = fishes[j];
-        fish.className = 'swimmingfish';
+        // replace only the "fish" token with "swimmingfish", preserving any other classes (e.g. branch type)
+        if (fish.classList) {
+            fish.classList.remove('fish');
+            fish.classList.add('swimmingfish');
+        } else {
+            const classes = (fish.className || '').split(/\s+/).filter(Boolean);
+            const newClasses = classes.filter(c => c !== 'fish');
+            newClasses.push('swimmingfish');
+            fish.className = newClasses.join(' ');
+        }
 
         // set fish position
         let randY = Math.floor((Math.random() * tankheight));
@@ -90,54 +101,52 @@ function plantFishes() {
     }
 }
 
-function scareFish(event) {
+function scareFish(event, val) {
     tanktop = tank.getBoundingClientRect().top;
     tankbottom = tank.getBoundingClientRect().bottom;
     tankleft = tank.getBoundingClientRect().left;
     tankright = tank.getBoundingClientRect().right;
     mouseX = event.clientX;
     mouseY = event.clientY;
-    scale = 8000;
-    // Check if mouse is in tank
-    if (mouseX >= tankleft && mouseX <= tankright && mouseY >= tanktop && mouseY <= tankbottom) {
-        console.log("mouse in tank");
-        fishes = document.getElementsByClassName("swimmingfish");
-        ball = document.getElementById("ball");
-        // Push fish away from mouse in a random direction
-        // there's some horrendous stuff here because I realize that some coordinates are from the left
-        // and some are from the right
-        // and also need to account for scrolling
-        for (var j = 0; j < fishes.length; j++) {
+    scale = 50000;
+    // If shift is held, reverse behavior to attract fish
+    const modeMultiplier = val
+    fishes = document.getElementsByClassName("swimmingfish");
+    ball = document.getElementById("ball");
 
-            fish = fishes[j];
-            fish.style.transition = ".5s top, .5s right";
+    for (var j = 0; j < fishes.length; j++) {
 
-            y = parseInt(fish.style.top || 0, 10) - window.scrollY;
-            x = parseInt(fish.style.right || 0, 10);
+        fish = fishes[j];
+        fish.style.transition = ".5s top, .5s right";
 
-            // get distance
-            dist = Math.sqrt(Math.pow(width - mouseX - x - fish.offsetWidth / 2, 2) + Math.pow(y - mouseY, 2));
+        y = parseInt(fish.style.top || 0, 10) - window.scrollY;
+        x = parseInt(fish.style.right || 0, 10);
 
-            // get unit vector
-            unitx = (width - mouseX - x - fish.offsetWidth / 2) / dist;
-            unity = (y - mouseY) / dist;
+        // get distance
+        dist = Math.sqrt(Math.pow(width - mouseX - x - fish.offsetWidth / 2, 2) + Math.pow(y - mouseY, 2));
+        if (!dist) continue; // avoid division by zero
 
-            // get new position
-            tempx = x;
-            tempy = y;
-            x = x - unitx * scale / dist;
-            y = y + unity * 2 * scale / dist + window.scrollY;
+        // get unit vector
+        unitx = (width - mouseX - x - fish.offsetWidth / 2) / dist;
+        unity = (y - mouseY) / dist;
 
-            // do not go outside of tank
-            // that is, truncate to tank boundaries tanktop and tankbottom
-            y = Math.min(Math.max(y, tanktop + window.scrollY + 20), tankbottom + window.scrollY - 20);
-            x = Math.min(Math.max(x, 10), width - 10);
-            console.log(x, y);
-            fish.style.top = y + "px";
-            fish.style.right = x + "px";
+        // update position: multiplier switches between scare (-1) and attract (+1)
+        x = x + modeMultiplier * unitx * scale / dist;
+        y = y - modeMultiplier * unity * 2 * scale / dist + window.scrollY;
 
-        }
+        // do not go outside of tank
+        y = Math.min(Math.max(y, tanktop + window.scrollY + 20), tankbottom + window.scrollY - 20);
+        x = Math.min(Math.max(x, 10), width - 10);
+        fish.style.top = y + "px";
+        fish.style.right = x + "px";
     }
 }
 
-document.addEventListener("click", scareFish);
+
+document.onclick = event => {
+    if (event.detail === 1) {
+        scareFish(event, 1);
+        console.log("single click");
+        // it was a single click
+    }
+};
