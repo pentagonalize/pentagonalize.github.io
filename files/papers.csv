@@ -1,0 +1,11 @@
+title,url,authors,venue,year
+"Length Generalization for Transformers via Compression","https://arxiv.org/abs/2609.08851","Georg Zetzsche;Hongjian Jiang;Andy Yang;Pascal Bergsträßer;Marco Sälzer;David Chiang;Anthony W. Lin","ArXiv preprint","2026"
+"Algebraic Decomposition Theory for Transformer Length Generalization","https://arxiv.org/abs/2608.13433","Andy Yang;Blerta Veseli;Corentin Barloy;Michaël Cadilhac;Andreas Krebs;Charles Paperman;Howard Straubing;Michael Hahn","In Proc. CoLM","2026"
+"Length generalization bounds for transformers","https://arxiv.org/abs/2603.02238","Andy Yang;Pascal Bergsträßer;Georg Zetzsche;David Chiang;Anthony W. Lin","In Proc. ICML","2026"
+"Probability Distributions Computed by Autoregressive Transformers","https://openreview.net/forum?id=gZIcyx1tQY","Andy Yang;Anej Svete;Jiaoda Li;Anthony Widjaja Lin;Jonathan Rawski;Ryan Cotterell;David Chiang","In Proc. ICLR","2026"
+"The Transformer Cookbook","https://openreview.net/forum?id=sPshCSvDrX","Andy Yang;Christopher Watson;Anton Xue;Satwik Bhattamishra;Jose Llarena;William Merrill;Emile Dos Santos Ferreira;Anej Svete;David Chiang","Transactions on Machine Learning Research","January 2026"
+"Knee-deep in C-RASP: a transformer depth hierarchy","https://openreview.net/forum?id=jPduiyxyfw","Andy Yang;Michaël Cadilhac;David Chiang","In Proc. NeurIPS 38","2025"
+"Simulating hard attention using soft attention","https://arxiv.org/abs/2412.09925","Andy Yang;Lena Strobl;David Chiang;Dana Angluin","Transactions of the Association for Computational Linguistics","2025"
+"A Formal Framework for Understanding Length Generalization in Transformers","https://openreview.net/forum?id=U49N5V51rU","Xinting Huang;Andy Yang;Satwik Bhattamishra;Yash Sarrof;Andreas Krebs;Hattie Zhou;Preetum Nakkiran;Michael Hahn","In Proc. ICLR","2025"
+"Counting like transformers: compiling temporal counting logic into softmax transformers","https://openreview.net/forum?id=FmhPg4UJ9K","Andy Yang;David Chiang","In Proc. CoLM","2024"
+"Masked hard-attention transformers recognize exactly the star-free languages","https://proceedings.neurips.cc/paper_files/paper/2024/hash/13d7f172259b11b230cc5da8768abc5f-Abstract-Conference.html","Andy Yang;David Chiang;Dana Angluin","In Proc. NeurIPS 37, 10202–10235","2024"

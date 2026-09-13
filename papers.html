@@ -47,100 +47,98 @@
                 Scholar</a> page):
             <br>
             <br>
-            <div class="leftsubbranch">
-                <a href="https://arxiv.org/abs/2603.02238">
-                    Length generalization bounds for transformers</a>
-                <br>
-                <span style="font-size:small;">
-                    Andy Yang, Pascal Bergsträßer, Georg Zetzsche, David Chiang, Anthony W. Lin.
-                    <br>
-                    ArXiv preprint.
-                </span>
-            </div>
-            <div class="leftsubbranch">
-                <a href="https://openreview.net/forum?id=gZIcyx1tQY">Probability Distributions Computed by
-                    Autoregressive Transformers
-                </a>
-                <br>
-                <span style="font-size:small;">
-                    Andy Yang, Anej Svete, Jiaoda Li, Anthony Widjaja Lin, Jonathan Rawski, Ryan Cotterell, David Chiang
-                    <br>
-                    In Proc. ICLR. 2026.
-                </span>
-                <div class="leftsubbranch">
-                    <a href="https://openreview.net/forum?id=sPshCSvDrX">The Transformer Cookbook</a>
-                    <br>
-                    <span style="font-size:small;">
-                        Andy Yang, Christopher Watson, Anton Xue, Satwik Bhattamishra, Jose Llarena, William Merrill,
-                        Emile
-                        Dos
-                        Santos Ferreira, Anej Svete, and David Chiang.
-                        <br>
-                        Transactions on Machine Learning Research, January 2026.
-                    </span>
-                </div>
-                <div class="leftsubbranch">
-                    <a href="https://openreview.net/forum?id=jPduiyxyfw">Knee-deep in C-RASP: a transformer depth
-                        hierarchy</a>
-                    <span style="font-size:small;">
-                        <br>
-                        Andy Yang, Michaël Cadilhac, and David Chiang.
-                        <br>
-                        In Proc. NeurIPS 38. 2025.
-                    </span>
-                </div>
-                <div class="leftsubbranch">
-                    <a href="https://arxiv.org/abs/2412.09925"> Simulating hard attention using soft attention</a>
-                    <span style="font-size:small;">
-                        <br>
-                        Andy Yang, Lena Strobl, David Chiang, and Dana Angluin.
-                        <br>
-                        Transactions of the Association for Computational Linguistics, 2025.
-                    </span>
-                </div>
-                <div class="leftsubbranch">
-                    <a href="https://openreview.net/forum?id=U49N5V51rU"> A Formal Framework for Understanding Length
-                        Generalization in Transformers </a>
-
-                    <span style="font-size:small;">
-                        <br>
-                        Xinting Huang, Andy Yang, Satwik Bhattamishra, Yash Sarrof, Andreas Krebs, Hattie Zhou, Preetum
-                        Nakkiran, Michael Hahn.
-                        <br>
-                        In Proc. ICLR. 2025.
-                    </span>
-                </div>
-                <div class="leftsubbranch">
-                    <a href="https://openreview.net/forum?id=FmhPg4UJ9K">Counting like transformers: compiling temporal
-                        counting logic into softmax transformers</a>
-
-                    <span style="font-size:small;">
-                        <br>
-                        Andy Yang and David Chiang.
-                        <br>
-                        In Proc. CoLM. 2024.
-                    </span>
-                </div>
-                <div class="leftsubbranch">
-                    <!-- <a href="blog_posts/BRASP/BRASP.html">B-RASP</a> -->
-                    <a
-                        href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/13d7f172259b11b230cc5da8768abc5f-Abstract-Conference.html">Masked
-                        hard-attention transformers recognize exactly the
-                        star-free languages.</a>
-
-                    <span style="font-size:small;">
-                        <br>
-                        Andy Yang, David Chiang, and Dana Angluin.
-                        <br>
-                        In Proc. NeurIPS 37, 10202–10235. 2024.
-                    </span>
-                </div>
-            </div>
+            <div id="papers-list" class="leftsubbranch">Loading publications&hellip;</div>
             <div class="footer">
                 <!-- <a href="">Home</a> -->
                 <br>
                 <!-- <button onclick="toggleCSS()">Toggle CSS</button> -->
             </div>
+
+            <script>
+                // Renders the publication list from files/papers.csv, so new papers
+                // can be added by editing that CSV instead of this HTML.
+                function parseCSV(text) {
+                    const rows = [];
+                    let row = [], field = '', inQuotes = false;
+                    for (let i = 0; i < text.length; i++) {
+                        const c = text[i];
+                        if (inQuotes) {
+                            if (c === '"') {
+                                if (text[i + 1] === '"') { field += '"'; i++; }
+                                else { inQuotes = false; }
+                            } else {
+                                field += c;
+                            }
+                        } else if (c === '"') {
+                            inQuotes = true;
+                        } else if (c === ',') {
+                            row.push(field);
+                            field = '';
+                        } else if (c === '\n' || c === '\r') {
+                            if (c === '\r' && text[i + 1] === '\n') i++;
+                            row.push(field);
+                            field = '';
+                            if (row.length > 1 || row[0] !== '') rows.push(row);
+                            row = [];
+                        } else {
+                            field += c;
+                        }
+                    }
+                    if (field !== '' || row.length > 0) {
+                        row.push(field);
+                        rows.push(row);
+                    }
+                    return rows;
+                }
+
+                function formatAuthors(authors) {
+                    if (authors.length === 1) return authors[0];
+                    if (authors.length === 2) return authors[0] + ' and ' + authors[1];
+                    return authors.slice(0, -1).join(', ') + ', and ' + authors[authors.length - 1];
+                }
+
+                async function loadPapers() {
+                    const container = document.getElementById('papers-list');
+                    try {
+                        const response = await fetch('files/papers.csv');
+                        const text = await response.text();
+                        const rows = parseCSV(text).filter(r => r.some(cell => cell.trim() !== ''));
+                        const header = rows[0];
+                        const col = name => header.indexOf(name);
+                        const titleCol = col('title'), urlCol = col('url'), authorsCol = col('authors'),
+                            venueCol = col('venue'), yearCol = col('year');
+
+                        container.innerHTML = '';
+                        for (let i = 1; i < rows.length; i++) {
+                            const row = rows[i];
+                            const authors = row[authorsCol].split(';').map(a => a.trim());
+
+                            const entry = document.createElement('div');
+                            entry.className = 'leftsubbranch';
+
+                            const link = document.createElement('a');
+                            link.href = row[urlCol];
+                            link.textContent = row[titleCol];
+                            entry.appendChild(link);
+                            entry.appendChild(document.createElement('br'));
+
+                            const span = document.createElement('span');
+                            span.style.fontSize = 'small';
+                            span.appendChild(document.createTextNode(formatAuthors(authors) + '.'));
+                            span.appendChild(document.createElement('br'));
+                            span.appendChild(document.createTextNode(row[venueCol] + ', ' + row[yearCol] + '.'));
+                            entry.appendChild(span);
+
+                            container.appendChild(entry);
+                        }
+                    } catch (err) {
+                        container.textContent = 'Could not load publications.';
+                        console.error(err);
+                    }
+                }
+
+                loadPapers();
+            </script>
 </body>
 
 </html>
