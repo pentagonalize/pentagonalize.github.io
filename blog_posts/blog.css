@@ -1,8 +1,8 @@
 :root {
     --tree-color: #44AA99;
-    --leaf-color: #117733;
+    --leaf-color: #1e791d;
     --background-color: #DDCC77;
-    --link-color: #332288;
+    --link-color: #5d3a84;
 }
 
 body {
@@ -31,18 +31,18 @@ body {
     background-color: var(--leaf-color);
     text-align: center;
     margin: 0;
-    border: #126b23 3px solid;
+    border: #1e791d 3px solid;
 }
 
 
 a:link {
-    color: #332288;
+    color: #5d3a84;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #332288;
+    color: #5d3a84;
     background-color: transparent;
     text-decoration: none;
 }
