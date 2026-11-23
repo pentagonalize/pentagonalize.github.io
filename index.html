@@ -7,11 +7,11 @@
 
 <html>
 
-<head class="header">
-    <title>Andy J Yang
-    </title>
-
-
+<head>
+    <meta charset="utf-8">
+    <title>Andy J. Yang</title>
+    <meta name="description"
+        content="PhD student at Notre Dame (advised by David Chiang). I work in algebraic automata theory and generalization in sequence models.">
 </head>
 
 <script>
@@ -42,6 +42,8 @@
             There are links on the tree branches below. Please click on them.
         </div>
         <div class="rightbranch">
+            <u>Andy J Yang</u>
+
             <br>
             <div class="rightsubbranch">
                 PhD student at the University of Notre Dame, advised by <a href="https://www3.nd.edu/~dchiang/"> Dr.
@@ -57,20 +59,77 @@
                     Sarrof</a>.
                 </p>
 
-                Research threads:
-                <ul>
-                    <li> Generalization in sequence models</li>
-                    <li> Algebraic automata theory</li>
-                </ul>
             </div>
         </div>
         <div class="leftbranch">
-            Publications
+            <u>Selected Publications</u>
+            <div class="leftsubbranch">
+                <a href="https://arxiv.org/abs/2608.13433">
+                    <b>Algebraic Decomposition Theory for Transformer Length Generalization</b>
+                </a>
+                <br>
+                <i>COLM 2026</i>
+                <br>
+                A novel algebraic decision procedure for monoid divisibility into wreath products of the
+                integers predicts
+                transformer length generalization
+            </div>
+            <br>
+
+            <div class="leftsubbranch">
+                <a
+                    href="https://papers.nips.cc/paper_files/paper/2025/hash/354a6e7be4f1a35127746b8147a31bfe-Abstract-Conference.html">
+                    <b>Knee-Deep in C-RASP: A Transformer Depth Hierarchy</b>
+                </a>
+                <br>
+                <i>NeurIPS 2025</i>
+                <br>
+                A quantifier depth hierarchy for majority logic with two variables characterizes transformer depth
+            </div>
+            <br>
+
+            <div class="leftsubbranch">
+                <a
+                    href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/13d7f172259b11b230cc5da8768abc5f-Abstract-Conference.html">
+                    <b>Masked Hard-Attention Transformers Recognize Exactly the Star-Free Languages</b>
+                </a>
+                <br>
+                <i>NeurIPS 2024</i>
+                <br>
+                An exact characterization of unique hard-attention transformers
+            </div>
+            <br>
+
+
+            <div class="leftsubbranch">
+                <a href="https://openreview.net/forum?id=sPshCSvDrX">
+                    <b>The Transformer Cookbook</b>
+                </a>
+                <br>
+                <i>TMLR 2026</i>
+                <br>
+                A community-sourced recipe book for algorithms that can be implemented by transformers
+            </div>
+            <br>
+
+
+
+
+
             <div class="leftsubbranch">
                 <a href="papers.html">
-                    My papers and preprints
+                    Other papers and preprints
                 </a>
+                <br>
+                The rest of them
             </div>
+        </div>
+        <div class="rightbranch">
+            <u>News</u>
+            <div id="news">
+                <!-- News items are loaded from files/news.csv; set NEWS_LIMIT below. -->
+            </div>
+
         </div>
         <!-- <div class="rightbranch">
             Other Projects
@@ -157,7 +216,7 @@
         </div> -->
 
         <div class="leftbranch">
-            Origami
+            <u>Origami</u>
             <div class="leftsubbranch">
             </div>
             <!-- <div class="leftsubbranch">
@@ -197,6 +256,68 @@
             <br>
             <!-- <button onclick="toggleCSS()">Toggle CSS</button> -->
         </div>
+        <script>
+            const NEWS_LIMIT = 6;
+
+            function escapeHtml(value) {
+                const element = document.createElement("span");
+                element.textContent = value;
+                return element.innerHTML;
+            }
+
+            function renderInlineMarkdown(value) {
+                let rendered = escapeHtml(value);
+                rendered = rendered.replace(/\[([^\]]+)\]\(([^)]+)\)/g,
+                    '<a href="$2">$1</a>');
+                rendered = rendered.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+                rendered = rendered.replace(/\*([^*]+)\*/g, "<i>$1</i>");
+                return rendered;
+            }
+
+            // Minimal CSV parser (handles quoted fields, commas, and "" escapes).
+            function parseCSV(text) {
+                const rows = [];
+                let row = [], field = "", inQuotes = false;
+                for (let i = 0; i < text.length; i++) {
+                    const c = text[i];
+                    if (inQuotes) {
+                        if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+                        else if (c === '"') inQuotes = false;
+                        else field += c;
+                    } else if (c === '"') inQuotes = true;
+                    else if (c === ",") { row.push(field); field = ""; }
+                    else if (c === "\n" || c === "\r") {
+                        if (c === "\r" && text[i + 1] === "\n") i++;
+                        row.push(field); field = "";
+                        rows.push(row); row = [];
+                    } else field += c;
+                }
+                if (field !== "" || row.length) { row.push(field); rows.push(row); }
+                return rows.filter(r => r.some(f => f.trim() !== ""));
+            }
+
+            // files/news.csv columns: date,text  (first row is a header;
+            // rows are shown in file order, so put the newest at the top).
+            fetch("files/news.csv")
+                .then(response => {
+                    if (!response.ok) throw new Error("Could not load news");
+                    return response.text();
+                })
+                .then(csv => {
+                    const items = parseCSV(csv).slice(1, 1 + NEWS_LIMIT);
+                    const container = document.getElementById("news");
+                    items.forEach(([date, text]) => {
+                        const item = document.createElement("div");
+                        item.className = "rightsubbranch";
+                        item.innerHTML = (date ? escapeHtml(date.trim()) + ": " : "")
+                            + renderInlineMarkdown((text || "").trim());
+                        container.appendChild(item);
+                    });
+                })
+                .catch(() => {
+                    document.getElementById("news").textContent = "";
+                });
+        </script>
 </body>
 
 </html>
