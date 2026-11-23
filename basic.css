@@ -1,7 +1,7 @@
 :root {
     --tree-color: #5d3a84;
     --leaf-color: #1e791d;
-    --background-color: #f5eae1;
+    --background-color: rgb(212, 241, 212);
     --link-color: #5d3a84;
 }
 
